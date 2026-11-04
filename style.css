@@ -37,9 +37,9 @@
   --status-rose: #dc2626;         /* Crisp rose red */
   --status-blue: #2563eb;         /* Crisp blue */
 
-  /* Typography */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Typography: Oswald (Headings 03) & Raleway (Body Wordings 01) */
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Raleway', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -180,9 +180,9 @@ body::before {
 
 .brand-title {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: 0.8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
   color: var(--text-primary);
   text-transform: uppercase;
   white-space: nowrap;
@@ -376,12 +376,13 @@ body::before {
 /* Reduced headline text size */
 .hero-title {
   font-family: var(--font-heading);
-  font-size: 2.35rem;             /* Reduced from 3.5rem to clean compact proportion */
-  font-weight: 800;
+  font-size: 2.5rem;
+  font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
-  letter-spacing: -0.4px;
+  letter-spacing: 0.5px;
   color: var(--text-primary);
+  text-transform: uppercase;
 }
 
 .hero-title .gradient-text {
@@ -479,10 +480,12 @@ body::before {
 /* Reduced section title font size */
 .section-title {
   font-family: var(--font-heading);
-  font-size: 1.75rem;             /* Reduced from 2.25rem */
-  font-weight: 700;
+  font-size: 1.85rem;
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .section-desc {
@@ -1101,11 +1104,13 @@ body::before {
 
 .contact-info-col h1 {
   font-family: var(--font-heading);
-  font-size: 2.1rem;             /* Reduced from 2.75rem */
-  font-weight: 800;
+  font-size: 2.25rem;
+  font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.85rem;
   color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .contact-info-col p {
