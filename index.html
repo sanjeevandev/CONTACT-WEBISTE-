@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZERO LATENCY — Threat Reconstruction & Autonomous Forensics</title>
+  <meta name="description" content="Zero Latency provides high-fidelity threat correlation, attack graph reconstruction, and atomic SOAR containment for modern SOCs.">
+  
+  <!-- Google Fonts: Inter & Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP NAVIGATION BAR (CybersecTools Framework)
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/logo.png" alt="Zero Latency Logo" class="brand-logo-img">
+        <div class="brand-text-wrap">
+          <span class="brand-title">Zero Latency</span>
+          <span class="brand-subtitle">Forensics & SOAR Engine</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
+          <li><a href="#architecture" class="nav-link">Architecture</a></li>
+          <li><a href="#compare" class="nav-link">Compare</a></li>
+          <li><a href="#sandbox" class="nav-link">Terminal</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary">Book Demo</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO SECTION (CybersecTools Style)
+       ======================================================================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge-wrap">
+        <span class="pulse-dot"></span>
+        <span class="hero-badge-text">v1.0.0 PRODUCTION RELEASE • 100% PASSING TEST SUITE</span>
+      </div>
+
+      <h1 class="hero-title">
+        The Autonomous Threat Reconstruction &<br>
+        <span class="gradient-text">Zero-Latency Forensics Engine</span>
+      </h1>
+
+      <p class="hero-lead">
+        Eliminate SIEM alert fatigue. ZERO LATENCY stitches multi-source security telemetry 
+        into chronological, MITRE-mapped attack graphs with interactive time-travel replay and deterministic, rollback-safe containment.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="http://127.0.0.1:8000/dashboard" target="_blank" class="btn btn-primary">
+          ⚡ Launch Web SOC Console
+        </a>
+        <a href="https://github.com/sanjeevandev/attacktrace" target="_blank" class="btn btn-secondary">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repository
+        </a>
+        <a href="contact.html" class="btn btn-secondary">
+          🤝 Schedule Briefing
+        </a>
+      </div>
+
+      <!-- Live Benchmarked Metric Bar -->
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <div class="metric-value">137<span class="accent">/137</span></div>
+          <div class="metric-label">Automated Unit & E2E Tests</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">&lt; 1.87<span class="accent">s</span></div>
+          <div class="metric-label">Full Regression Suite Speed</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">6<span class="accent"> Layers</span></div>
+          <div class="metric-label">Streamlined Core Pipeline</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">100<span class="accent">%</span></div>
+          <div class="metric-label">Reversible Atomic Rollbacks</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CORE DIRECTORY & CAPABILITY CATALOG (CybersecTools Categorized Grid)
+       ======================================================================== -->
+  <section class="directory-section" id="capabilities">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Feature Directory</span>
+        <h2 class="section-title">Zero Latency Architectural Modules</h2>
+        <p class="section-desc">Explore the modular capabilities powering our threat correlation, incident graph generation, and autonomous containment platform.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-category="all">All Modules</button>
+        <button class="filter-btn" data-category="correlation">Correlation & Graph</button>
+        <button class="filter-btn" data-category="mitre">MITRE Heuristics</button>
+        <button class="filter-btn" data-category="soar">Autonomous SOAR</button>
+        <button class="filter-btn" data-category="forensics">Forensics & Reports</button>
+        <button class="filter-btn" data-category="ingestion">Log Ingestion</button>
+      </div>
+
+      <!-- Tools Grid -->
+      <div class="tools-grid" id="tools-grid">
+        
+        <!-- Module 1: Time Travel Replayer -->
+        <div class="tool-card" data-category="correlation">
+          <div class="card-top">
+            <div class="card-icon-box">⏪</div>
+            <span class="layer-tag">Frontend Engine</span>
+          </div>
+          <h3 class="card-title">Interactive Time-Travel Replayer</h3>
+          <p class="card-desc">Video-scrubber interface allowing analysts to step through breach timelines from t₀ to t_end. Dynamically reveals SVG nodes and animates pulsating radar rings on compromised assets.</p>
+          <div class="card-tags">
+            <span class="chip">D3.js SVG</span>
+            <span class="chip">Kinetic Timeline</span>
+            <span class="chip">Lateral Movement</span>
+          </div>
+          <div class="card-footer">
+            <span class="status-pill"><span class="status-dot"></span> Active in v1.0.0</span>
+            <a href="http://127.0.0.1:8000/dashboard" class="card-arrow">Test Drive →</a>
+          </div>
+        </div>
+
+        <!-- Module 2: Dual-Bounding Sliding Window -->
+        <div class="tool-card" data-category="correlation">
+          <div class="card-top">
+            <div class="card-icon-box">🔗</div>
+            <span class="layer-tag">Layer 3 Correlation</span>
+          </div>
+          <h3 class="card-title">Dual-Bounding Correlation Engine</h3>
+          <p class="card-desc">Groups security events by primary actor IP and targeted accounts over an inter-event gap of 60 minutes and a hard 240-minute campaign ceiling, eliminating infinite daisy-chaining.</p>
+          <div class="card-tags">
+            <span class="chip">Sliding Window</span>
+            <span class="chip">Confidence Metric</span>
+            <span class="chip">Actor Grouping</span>
+          </div>
+          <div class="card-footer">
+            <span class="status-pill"><span class="status-dot"></span> Bounded Logic</span>
+            <a href="#architecture" class="card-arrow">Specs →</a>
+          </div>
+        </div>
+
+        <!-- Module 3: Atomic SOAR Rollbacks -->
+        <div class="tool-card" data-category="soar">
+          <div class="card-top">
+            <div class="card-icon-box">🔄</div>
+            <span class="layer-tag">Layer 5 SOAR</span>
+          </div>
+          <h3 class="card-title">Atomic SOAR & Reversible Rollbacks</h3>
+          <p class="card-desc">Generates paired containment and reverse scripts (mitigate.ps1 & rollback.ps1) with unique cryptographic rollback tokens, preventing production outages during containment.</p>
+          <div class="card-tags">
+            <span class="chip">PowerShell / Bash</span>
+            <span class="chip">Cryptographic Token</span>
+            <span class="chip">Dry-Run Preview</span>
+          </div>
+          <div class="card-footer">
+            <span class="status-pill"><span class="status-dot"></span> Zero-Risk Contain</span>
+            <a href="#architecture" class="card-arrow">Specs →</a>
+          </div>
+        </div>
+
+        <!-- Module 4: MITRE ATT&CK Matrix Mapping -->
+        <div class="tool-card" data-category="mitre">
+          <div class="card-top">
+            <div class="card-icon-box">🎯</div>
+            <span class="layer-tag">Layer 2 Enrichment</span>
+          </div>
+          <h3 class="card-title">Calibrated MITRE Heuristics</h3>
+          <p class="card-desc">Heuristic regex and pattern matching across T1595, T1110, T1190, T1078, and T1005 with zero false alarms on standard administrative CLI flags like --verbose or routine root logins.</p>
+          <div class="card-tags">
+            <span class="chip">T1190 SQLi</span>
+            <span class="chip">T1110 Brute Force</span>
+            <span class="chip">Zero False Positives</span>
+          </div>
+          <div class="card-footer">
+            <span class="status-pill"><span class="status-dot"></span> Calibrated</span>
+            <a href="#architecture" class="card-arrow">Specs →</a>
+          </div>
+        </div>
+
+        <!-- Module 5: Multi-Format Streaming Ingestion -->
+        <div class="tool-card" data-category="ingestion">
+          <div class="card-top">
+            <div class="card-icon-box">📥</div>
+            <span class="layer-tag">Layer 1 Ingestion</span>
+          </div>
+          <h3 class="card-title">OOM-Safe Streaming Adapters</h3>
+          <p class="card-desc">Line-by-line streaming generator for multi-gigabyte JSONL logs, Windows Event Logs (4624, 4625, 4688), Syslog RFC 3164/5424, and Apache/Nginx web server access logs.</p>
+          <div class="card-tags">
+            <span class="chip">JSONL Streaming</span>
+            <span class="chip">Windows EVTX</span>
+            <span class="chip">RFC Syslog</span>
+          </div>
+          <div class="card-footer">
+            <span class="status-pill"><span class="status-dot"></span> Streaming Ready</span>
+            <a href="#architecture" class="card-arrow">Specs →</a>
+          </div>
+        </div>
+
+        <!-- Module 6: Triple Forensic Dossier -->
+        <div class="tool-card" data-category="forensics">
+          <div class="card-top">
+            <div class="card-icon-box">📋</div>
+            <span class="layer-tag">Layer 6 Reporting</span>
+          </div>
+          <h3 class="card-title">Triple-Format Forensic Dossier</h3>
+          <p class="card-desc">One-click downloads of formal Executive Markdown reports (INCIDENT_REPORT.md), structured JSON evidence packages (dossier.json), and official MITRE ATT&CK Navigator v4.5 layers.</p>
+          <div class="card-tags">
+            <span class="chip">Navigator v4.5</span>
+            <span class="chip">Markdown Dossier</span>
+            <span class="chip">Chain-of-Custody</span>
+          </div>
+          <div class="card-footer">
+            <span class="status-pill"><span class="status-dot"></span> 1-Click Export</span>
+            <a href="contact.html" class="card-arrow">Download Sample →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       HEAD-TO-HEAD COMPARISON TABLE (CybersecTools Comparison Matrix)
+       ======================================================================== -->
+  <section class="compare-section" id="compare">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Market Benchmark</span>
+        <h2 class="section-title">Zero Latency vs. Traditional Systems</h2>
+        <p class="section-desc">See why modern SOC teams and incident responders replace noisy alert queues with our deterministic threat correlation architecture.</p>
+      </div>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Evaluation Parameter</th>
+              <th class="highlight-col">⚡ ZERO LATENCY (ATTACKTRACE)</th>
+              <th>Legacy SIEM (Splunk / QRadar)</th>
+              <th>Standard EDR Agents</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Alert Handling Model</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ Reconstructed Multi-Stage Story</span></td>
+              <td><span class="badge-cross">✗ 10,000+ Uncorrelated Alerts</span></td>
+              <td><span class="badge-cross">✗ Host-Isolated Point Detections</span></td>
+            </tr>
+            <tr>
+              <td><strong>Containment Safety</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ Atomic Twin Rollbacks (Zero Downtime)</span></td>
+              <td><span class="badge-cross">✗ High-Risk One-Way Scripts</span></td>
+              <td><span class="badge-cross">✗ Invasive Host Quarantines</span></td>
+            </tr>
+            <tr>
+              <td><strong>Incident Timeline Visualization</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ Kinetic Time-Travel Replayer (D3)</span></td>
+              <td><span class="badge-cross">✗ Flat SQL/SPL Result Tables</span></td>
+              <td><span class="badge-cross">✗ Process Tree Only</span></td>
+            </tr>
+            <tr>
+              <td><strong>Footprint & Portability</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ Portable Python CLI & Embedded SQLite</span></td>
+              <td><span class="badge-cross">✗ Heavy Multi-Server Cloud Cluster</span></td>
+              <td><span class="badge-cross">✗ Heavy Kernel Drivers</span></td>
+            </tr>
+            <tr>
+              <td><strong>Air-Gapped & Offline Safety</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ 100% Offline (Local Threat Intel)</span></td>
+              <td><span class="badge-cross">✗ Requires Outbound Cloud Sync</span></td>
+              <td><span class="badge-cross">✗ Cloud Management Dependency</span></td>
+            </tr>
+            <tr>
+              <td><strong>Built-in Cyber Range</strong></td>
+              <td class="highlight-col"><span class="badge-check">✓ Windows, Linux, macOS Scenarios</span></td>
+              <td><span class="badge-cross">✗ None (Requires Live Breaches)</span></td>
+              <td><span class="badge-cross">✗ Synthetic Testing Not Included</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       INTERACTIVE TERMINAL SANDBOX
+       ======================================================================== -->
+  <section class="terminal-section" id="sandbox">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Hands-On Evaluation</span>
+        <h2 class="section-title">Interactive Terminal Sandbox</h2>
+        <p class="section-desc">Experience the same CLI interface security analysts use in PowerShell, Linux Bash, and macOS Terminal.</p>
+      </div>
+
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="terminal-title">zero-latency-cli — bash/powershell</span>
+          <div class="terminal-tabs">
+            <button class="term-tab active" data-cmd="demo">demo windows</button>
+            <button class="term-tab" data-cmd="status">status</button>
+            <button class="term-tab" data-cmd="incidents">incidents --list</button>
+            <button class="term-tab" data-cmd="mitigate">mitigate --rollback</button>
+          </div>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <span class="terminal-prompt">$ </span><span class="terminal-cmd">attacktrace demo --scenario windows</span>
+          <div class="terminal-output">
+================================================================================
+  ▲  A T T A C K T R A C E   |   Cybersecurity Threat Reconstruction Engine
+================================================================================
+[SYSTEM] Loading and executing breach scenario: windows_ad_compromise...
+[SUCCESS] Scenario completed. Correlated 1 incident(s) persisted to DB.
+
+  • Incident ID: 09a30c4e-4ea4-42bb-8666-46eb487afab9 | <span class="text-critical">CRITICAL</span> | Actor: 198.51.100.45
+  • Stages Traversed: 4 (Reconnaissance ➔ Credential Access ➔ Execution ➔ Exfiltration)
+  • Attack Steps: 5 | Confidence: <span class="text-green">100%</span>
+[+] Stored in local SQLite database: ~/.attacktrace/attacktrace.db
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PRICING & BUSINESS MODEL (Microproject Criterion 5)
+       ======================================================================== -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Commercial Model</span>
+        <h2 class="section-title">Transparent Open-Core Pricing</h2>
+        <p class="section-desc">From independent security researchers to enterprise defense teams, deploy Zero Latency anywhere.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Community Tier -->
+        <div class="pricing-card">
+          <h3 class="plan-name">Community Edition</h3>
+          <p class="plan-desc">For security students, independent researchers, and penetration testers.</p>
+          <div class="plan-price">$0 <span>/ forever</span></div>
+          <ul class="plan-features">
+            <li>Global <code>attacktrace</code> CLI suite</li>
+            <li>Embedded SQLite database persistence</li>
+            <li>Windows, Linux & macOS Demo scenarios</li>
+            <li>Local D3 Force Graph Web Dashboard</li>
+            <li>Markdown Forensic Report generator</li>
+            <li>Community MITRE ATT&CK signatures</li>
+          </ul>
+          <a href="https://github.com/sanjeevandev/attacktrace" target="_blank" class="btn btn-secondary">Download on GitHub</a>
+        </div>
+
+        <!-- Enterprise SOC Tier -->
+        <div class="pricing-card featured">
+          <span class="featured-pill">RECOMMENDED FOR ENTERPRISE</span>
+          <h3 class="plan-name">Enterprise SOC Pro</h3>
+          <p class="plan-desc">For enterprise incident response teams, MSSPs, and 24/7 security operation centers.</p>
+          <div class="plan-price">$499 <span>/ month / cluster</span></div>
+          <ul class="plan-features">
+            <li>Everything in Community Edition</li>
+            <li>Streaming multi-gigabyte JSONL & EVTX collectors</li>
+            <li>Live Active Directory & EDR ingest connectors</li>
+            <li>Multi-user centralized investigation history</li>
+            <li>Automated Threat Intel Feed sync (VirusTotal, AbuseIPDB)</li>
+            <li>Custom Atomic SOAR playbook integrations</li>
+            <li>24/7 Priority Incident Response SLAs</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Request Enterprise Trial</a>
+        </div>
+
+        <!-- Defense & Academic Tier -->
+        <div class="pricing-card">
+          <h3 class="plan-name">Defense & Academic Lab</h3>
+          <p class="plan-desc">For cybersecurity colleges, defense contractors, and specialized training ranges.</p>
+          <div class="plan-price">Custom <span>/ campus license</span></div>
+          <ul class="plan-features">
+            <li>Everything in Enterprise Pro</li>
+            <li>Air-gapped offline military installations</li>
+            <li>Custom cyber breach scenario synthesis tools</li>
+            <li>Curriculum integration & student lab management</li>
+            <li>Dedicated security architecture consultation</li>
+          </ul>
+          <a href="contact.html" class="btn btn-secondary">Contact Academic Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-col">
+          <a href="index.html" class="nav-brand" style="margin-bottom: 1rem;">
+            <img src="assets/logo.png" alt="Zero Latency" class="brand-logo-img">
+            <span class="brand-title">Zero Latency</span>
+          </a>
+          <p style="color: var(--text-muted); max-width: 320px; line-height: 1.6;">
+            Next-generation automated threat correlation and forensic incident reconstruction. 
+            Empowering security operations centers with microsecond response times and reversible atomic containments.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="#capabilities">Feature Modules</a></li>
+            <li><a href="#architecture">6-Layer Pipeline</a></li>
+            <li><a href="#compare">Competitive Matrix</a></li>
+            <li><a href="#pricing">Pricing & Commercial</a></li>
+            <li><a href="http://127.0.0.1:8000/dashboard" target="_blank">Live Web Console</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/sanjeevandev/attacktrace" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://attack.mitre.org/" target="_blank">MITRE ATT&CK Matrix</a></li>
+            <li><a href="contact.html">Enterprise Inquiries</a></li>
+            <li><a href="contact.html">Investor Relations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal & Operations</h4>
+          <ul class="footer-links">
+            <li><a href="#">MIT Open-Source License</a></li>
+            <li><a href="#">Security Disclosure Policy</a></li>
+            <li><a href="#">Privacy & Provenance</a></li>
+            <li><a href="mailto:engineering@attacktrace.io">contact@zerolatency.sec</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Zero Latency Labs (ATTACKTRACE). All rights reserved.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">
+          SYSTEM STATUS: ALL OPERATIONAL • 137/137 TESTS GREEN
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       COMMAND SEARCH MODAL (⌘K)
+       ======================================================================== -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-modal-input-wrap">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" class="search-modal-input" id="search-modal-input" placeholder="Type a command or keyword (e.g. windows, rollback, sqli, d3)..." autofocus>
+        <span class="kbd-badge">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results-list">
+        <!-- Injected via JavaScript -->
+      </ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

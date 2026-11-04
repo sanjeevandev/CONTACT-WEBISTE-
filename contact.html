@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Inquiry & Demo Booking — ZERO LATENCY</title>
+  <meta name="description" content="Schedule an enterprise demo, discuss partnership opportunities, or explore research collaborations with Zero Latency.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/logo.png" alt="Zero Latency Logo" class="brand-logo-img">
+        <div class="brand-text-wrap">
+          <span class="brand-title">Zero Latency</span>
+          <span class="brand-subtitle">Commercial Portal</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#capabilities" class="nav-link">Capabilities</a></li>
+          <li><a href="index.html#architecture" class="nav-link">Architecture</a></li>
+          <li><a href="index.html#compare" class="nav-link">Compare</a></li>
+          <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary">Book Demo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       CONTACT & DEMO BOOKING PORTAL
+       ======================================================================== -->
+  <main class="container">
+    <div class="contact-layout">
+      
+      <!-- Left Column: Value, Proof & Trust -->
+      <div class="contact-info-col">
+        <span class="section-tag">Enterprise Inbound</span>
+        <h1>Schedule Your SOC Demo & Technical Briefing</h1>
+        <p>
+          Connect directly with our engineering and threat intelligence architects. 
+          Learn how Zero Latency eliminates alert fatigue and brings deterministic atomic rollbacks to your security team.
+        </p>
+
+        <div class="trust-card">
+          <h4>⚡ Zero-Latency Incident Response</h4>
+          <p>Reconstruct complex, multi-stage attack campaigns across Windows, Linux, and web telemetry in under 60 seconds.</p>
+        </div>
+
+        <div class="trust-card">
+          <h4>🔄 Safe Containment Guarantee</h4>
+          <p>Every generated firewall and host containment script is backed by verified atomic rollback tokens for zero business downtime.</p>
+        </div>
+
+        <div class="trust-card">
+          <h4>🧪 Instant Sandbox Evaluation</h4>
+          <p>Want to evaluate right now without speaking to sales? Launch our pre-configured local console to explore Windows AD, Linux, and macOS breaches.</p>
+          <a href="http://127.0.0.1:8000/dashboard" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; width: 100%;">
+            Launch Local Sandbox Console →
+          </a>
+        </div>
+
+        <div style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-dim);">
+          Direct Security Dispatch: <span style="color: var(--neon-cyan);">contact@zerolatency.sec</span><br>
+          Official GitHub: <a href="https://github.com/sanjeevandev/attacktrace" target="_blank" style="color: var(--text-muted);">github.com/sanjeevandev/attacktrace</a>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Intake Form -->
+      <div class="form-card">
+        
+        <!-- Tab Selector -->
+        <div class="inquiry-tabs" id="inquiry-tabs">
+          <button class="inquiry-tab active" data-type="SOC Demo">⚡ Request SOC Demo</button>
+          <button class="inquiry-tab" data-type="Partnership / Investor">🤝 Partner & Investor</button>
+          <button class="inquiry-tab" data-type="Academic / Lab">🎓 Academic Lab</button>
+        </div>
+
+        <!-- The Live Form -->
+        <form id="contact-form">
+          <input type="hidden" id="inquiry-type" value="SOC Demo">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="full-name">Full Name *</label>
+              <input type="text" id="full-name" class="form-control" placeholder="Alex Mercer" required>
+            </div>
+            <div class="form-group">
+              <label for="work-email">Work Email *</label>
+              <input type="email" id="work-email" class="form-control" placeholder="alex@defense.org" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="organization">Organization / College *</label>
+              <input type="text" id="organization" class="form-control" placeholder="Acme Security / University" required>
+            </div>
+            <div class="form-group">
+              <label for="log-volume">Daily Telemetry Volume</label>
+              <select id="log-volume" class="form-control">
+                <option value="< 1 GB/day">&lt; 1 GB / day (Small Lab)</option>
+                <option value="1 - 50 GB/day" selected>1 - 50 GB / day (Mid-Market SOC)</option>
+                <option value="50 - 500 GB/day">50 - 500 GB / day (Enterprise)</option>
+                <option value="500+ GB/day">500+ GB / day (MSSP / Cloud Cluster)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Investigation Scope / Questions *</label>
+            <textarea id="message" class="form-control" placeholder="Describe your team's SOC challenges, log sources, or partnership objectives..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">
+            Transmit Secure Inquiry →
+          </button>
+          <div style="font-size: 0.72rem; color: var(--text-dim); text-align: center; margin-top: 0.85rem;">
+            🔒 AES-256 Encrypted Inbound Transmission • Protected by Zero Latency Protocols
+          </div>
+        </form>
+
+        <!-- Success Confirmation Panel -->
+        <div class="success-panel" id="success-panel">
+          <div class="success-badge">✓</div>
+          <h2 style="font-family: var(--font-heading); color: var(--cream-white); margin-bottom: 0.5rem;">Inquiry Dispatched Successfully</h2>
+          <p style="color: var(--cream-muted); font-size: 0.9rem;">
+            Your request has been logged into the Zero Latency queue. A solutions architect will reach out within 1 business day.
+          </p>
+
+          <div class="ticket-display">
+            <span id="ticket-id-display">INQ-7A2F8B9C</span>
+            <button class="copy-btn" id="copy-ticket-btn">Copy ID</button>
+          </div>
+
+          <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+            <a href="index.html" class="btn btn-secondary">← Back to Overview</a>
+            <a href="http://127.0.0.1:8000/dashboard" target="_blank" class="btn btn-primary">Launch Web Console</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="text-align: center;">
+      <p style="color: var(--text-dim); font-size: 0.85rem;">
+        © 2026 Zero Latency Labs (ATTACKTRACE). All rights reserved. • ISO 27001 & MITRE ATT&CK Aligned.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
