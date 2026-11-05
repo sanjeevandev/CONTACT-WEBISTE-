@@ -93,38 +93,268 @@ body::before {
 }
 
 /* ==========================================================================
-   REACTBITS SCROLL REVEAL ANIMATIONS
+   REACTBITS & ORIGIN UI CINEMATIC ANIMATION SYSTEM
+   Side-slide physics, spotlight cards, border-beam, and spring transitions
    ========================================================================== */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  filter: blur(4px);
-  transition: var(--transition-reveal);
+  transform: translateY(28px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
-.reveal.revealed {
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-45px);
+  filter: blur(6px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(45px);
+  filter: blur(6px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  filter: blur(6px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal.revealed,
+.reveal-left.revealed,
+.reveal-right.revealed,
+.reveal-scale.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0, 0) scale(1);
   filter: blur(0);
 }
 
-/* Staggered children transitions */
-.tools-grid .tool-card:nth-child(1) { transition-delay: 0.05s; }
-.tools-grid .tool-card:nth-child(2) { transition-delay: 0.12s; }
-.tools-grid .tool-card:nth-child(3) { transition-delay: 0.19s; }
-.tools-grid .tool-card:nth-child(4) { transition-delay: 0.26s; }
-.tools-grid .tool-card:nth-child(5) { transition-delay: 0.33s; }
-.tools-grid .tool-card:nth-child(6) { transition-delay: 0.40s; }
+/* Reactbits Alternating Directional Side-Slide for Tools Grid */
+.tools-grid .tool-card:nth-child(1) {
+  opacity: 0;
+  transform: translateX(-40px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.04s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.04s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.04s;
+}
+.tools-grid .tool-card:nth-child(2) {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
+}
+.tools-grid .tool-card:nth-child(3) {
+  opacity: 0;
+  transform: translateX(40px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.20s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.20s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.20s;
+}
+.tools-grid .tool-card:nth-child(4) {
+  opacity: 0;
+  transform: translateX(-40px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s;
+}
+.tools-grid .tool-card:nth-child(5) {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.36s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.36s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.36s;
+}
+.tools-grid .tool-card:nth-child(6) {
+  opacity: 0;
+  transform: translateX(40px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.44s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.44s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.44s;
+}
 
+.tools-grid .tool-card.revealed {
+  opacity: 1;
+  transform: translate(0, 0);
+  filter: blur(0);
+}
+
+/* Reactbits & Origin UI Spotlight Card Effect */
+.tool-card, .pricing-card, .trust-card {
+  position: relative;
+}
+
+.tool-card::after, .pricing-card::after, .trust-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(400px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(18, 19, 22, 0.04), transparent 75%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.tool-card:hover::after, .pricing-card:hover::after, .trust-card:hover::after {
+  opacity: 1;
+}
+
+/* Metrics Stagger */
 .metrics-grid .metric-item:nth-child(1) { transition-delay: 0.06s; }
 .metrics-grid .metric-item:nth-child(2) { transition-delay: 0.14s; }
 .metrics-grid .metric-item:nth-child(3) { transition-delay: 0.22s; }
 .metrics-grid .metric-item:nth-child(4) { transition-delay: 0.30s; }
 
-.pricing-grid .pricing-card:nth-child(1) { transition-delay: 0.08s; }
-.pricing-grid .pricing-card:nth-child(2) { transition-delay: 0.16s; }
-.pricing-grid .pricing-card:nth-child(3) { transition-delay: 0.24s; }
+/* Pricing Grid Alternating Slide */
+.pricing-grid .pricing-card:nth-child(1) {
+  opacity: 0;
+  transform: translateX(-40px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
+}
+.pricing-grid .pricing-card:nth-child(2) {
+  opacity: 0;
+  transform: translateY(36px) scale(0.97);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+}
+.pricing-grid .pricing-card:nth-child(3) {
+  opacity: 0;
+  transform: translateX(40px);
+  filter: blur(5px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s,
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s;
+}
+.pricing-grid .pricing-card.revealed {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* Contact Side-Slide Physics */
+.contact-layout .contact-info-col {
+  opacity: 0;
+  transform: translateX(-45px);
+  filter: blur(6px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact-layout .form-card {
+  opacity: 0;
+  transform: translateX(45px);
+  filter: blur(6px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+.contact-layout .contact-info-col.revealed,
+.contact-layout .form-card.revealed {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+/* Comparison Matrix & Terminal Cinematic Glide */
+.compare-table-wrap {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  filter: blur(6px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.compare-table-wrap.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.terminal-box {
+  opacity: 0;
+  transform: translateY(45px) scale(0.97);
+  filter: blur(6px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.terminal-box.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Origin UI Border-Beam on Featured Card */
+.pricing-card.featured {
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card.featured::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 280deg, rgba(18, 19, 22, 0.3) 340deg, transparent 360deg);
+  animation: border-beam-spin 6s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes border-beam-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pricing-card.featured > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Origin UI Spring Buttons */
+.btn {
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.22s ease, 
+              background 0.22s ease;
+  will-change: transform;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
 
 /* ==========================================================================
    NAVIGATION BAR

@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initMobileNav();
   initScrollAnimations();
+  initSpotlightEffect();
+  initMetricCounters();
 });
 
 /* ==========================================================================
@@ -489,7 +491,7 @@ function initMobileNav() {
    ========================================================================== */
 function initScrollAnimations() {
   const revealTargets = document.querySelectorAll(
-    '.tool-card, .metric-item, .pricing-card, .compare-table-wrap, .terminal-box, .trust-card, .form-card, .section-header'
+    '.tool-card, .metric-item, .pricing-card, .compare-table-wrap, .terminal-box, .trust-card, .form-card, .contact-info-col, .section-header, .reveal-left, .reveal-right, .reveal-scale, .reveal'
   );
 
   if (!revealTargets.length) return;
@@ -507,9 +509,78 @@ function initScrollAnimations() {
   });
 
   revealTargets.forEach(el => {
-    el.classList.add('reveal');
+    // Only add generic .reveal if element does not already have specific directional animations
+    if (!el.classList.contains('reveal-left') && 
+        !el.classList.contains('reveal-right') && 
+        !el.classList.contains('reveal-scale') &&
+        !el.classList.contains('tool-card') &&
+        !el.classList.contains('pricing-card') &&
+        !el.classList.contains('contact-info-col')) {
+      el.classList.add('reveal');
+    }
     observer.observe(el);
   });
+}
+
+/* ==========================================================================
+   7. REACTBITS & ORIGIN UI SPOTLIGHT INTERACTION
+   ========================================================================== */
+function initSpotlightEffect() {
+  const cards = document.querySelectorAll('.tool-card, .pricing-card, .trust-card, .terminal-box, .form-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
+/* ==========================================================================
+   8. REACTBITS / ORIGIN UI METRIC COUNTERS
+   ========================================================================== */
+function initMetricCounters() {
+  const counters = document.querySelectorAll('.counter[data-target]');
+  if (!counters.length) return;
+
+  const animateCounter = (el) => {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const duration = 1600; // ms
+    const startTime = performance.now();
+
+    const update = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutExpo for snappy deceleration
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = ease * target;
+      
+      el.textContent = current.toFixed(decimals);
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = target.toFixed(decimals);
+      }
+    };
+
+    requestAnimationFrame(update);
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counterEl = entry.target;
+        animateCounter(counterEl);
+        obs.unobserve(counterEl);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  counters.forEach(c => observer.observe(c));
 }
 
 /* ==========================================================================
