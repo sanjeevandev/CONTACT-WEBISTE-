@@ -391,8 +391,31 @@ function initContactForm() {
 
     let ticketId = 'INQ-' + Math.random().toString(36).substring(2, 10).toUpperCase();
 
+    // 1. Dispatch directly to sanjeevanv@karunya.edu.in via FormSubmit AJAX service
     try {
-      // Attempt to dispatch to local backend if online
+      await fetch('https://formsubmit.co/ajax/sanjeevanv@karunya.edu.in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          Ticket_ID: ticketId,
+          Inquiry_Type: currentInquiryType,
+          Name: fullName,
+          Email: email,
+          Organization: organization,
+          Telemetry_Volume: logVolume,
+          Message: message,
+          _subject: `[Zero Latency] ${currentInquiryType}: ${fullName} (${organization})`
+        })
+      });
+    } catch (err) {
+      console.log('Direct email dispatch note:', err);
+    }
+
+    // 2. Also dispatch to local FastAPI backend if online
+    try {
       const response = await fetch('http://127.0.0.1:8000/api/v1/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -406,8 +429,17 @@ function initContactForm() {
         }
       }
     } catch (err) {
-      // Fallback seamlessly to local client ticket generation
       console.log('Backend offline or standalone static mode; generated local ticket:', ticketId);
+    }
+
+    // 3. Configure direct email client link
+    const emailClientBtn = document.getElementById('email-client-btn');
+    if (emailClientBtn) {
+      const mailtoSubject = encodeURIComponent(`[Zero Latency] ${currentInquiryType} - Ticket ${ticketId}`);
+      const mailtoBody = encodeURIComponent(
+        `Dear Sanjeevan,\n\nI submitted an inquiry through the Zero Latency portal.\n\nTicket ID: ${ticketId}\nInquiry Type: ${currentInquiryType}\nName: ${fullName}\nEmail: ${email}\nOrganization: ${organization}\nTelemetry Volume: ${logVolume}\n\nMessage:\n${message}\n`
+      );
+      emailClientBtn.href = `mailto:sanjeevanv@karunya.edu.in?subject=${mailtoSubject}&body=${mailtoBody}`;
     }
 
     // Save ticket to local history

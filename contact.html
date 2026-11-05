@@ -78,9 +78,9 @@
           </a>
         </div>
 
-        <div style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-dim);">
-          Direct Security Dispatch: <span style="color: var(--neon-cyan);">contact@zerolatency.sec</span><br>
-          Official GitHub: <a href="https://github.com/sanjeevandev/attacktrace" target="_blank" style="color: var(--text-muted);">github.com/sanjeevandev/attacktrace</a>
+        <div style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-dim); line-height: 1.8;">
+          <strong>Direct Inbound:</strong> <a href="mailto:sanjeevanv@karunya.edu.in" style="color: var(--text-primary); font-weight: 600; text-decoration: underline;">sanjeevanv@karunya.edu.in</a><br>
+          <strong>Official GitHub:</strong> <a href="https://github.com/sanjeevandev/CONTACT-WEBISTE-" target="_blank" style="color: var(--text-muted);">github.com/sanjeevandev/CONTACT-WEBISTE-</a>
         </div>
       </div>
 
@@ -94,29 +94,32 @@
           <button class="inquiry-tab" data-type="Academic / Lab">🎓 Academic Lab</button>
         </div>
 
-        <!-- The Live Form -->
-        <form id="contact-form">
-          <input type="hidden" id="inquiry-type" value="SOC Demo">
+        <!-- The Live Form with Direct Email Connection -->
+        <form id="contact-form" name="contact" method="POST" data-netlify="true" action="https://formsubmit.co/sanjeevanv@karunya.edu.in">
+          <input type="hidden" name="form-name" value="contact">
+          <input type="hidden" name="_subject" value="New Zero Latency SOC Inquiry">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" id="inquiry-type" name="inquiry_type" value="SOC Demo">
 
           <div class="form-row">
             <div class="form-group">
               <label for="full-name">Full Name *</label>
-              <input type="text" id="full-name" class="form-control" placeholder="Alex Mercer" required>
+              <input type="text" id="full-name" name="name" class="form-control" placeholder="Alex Mercer" required>
             </div>
             <div class="form-group">
               <label for="work-email">Work Email *</label>
-              <input type="email" id="work-email" class="form-control" placeholder="alex@defense.org" required>
+              <input type="email" id="work-email" name="email" class="form-control" placeholder="alex@defense.org" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="organization">Organization / College *</label>
-              <input type="text" id="organization" class="form-control" placeholder="Acme Security / University" required>
+              <input type="text" id="organization" name="organization" class="form-control" placeholder="Karunya Institute / Acme Security" required>
             </div>
             <div class="form-group">
               <label for="log-volume">Daily Telemetry Volume</label>
-              <select id="log-volume" class="form-control">
+              <select id="log-volume" name="telemetry_volume" class="form-control">
                 <option value="< 1 GB/day">&lt; 1 GB / day (Small Lab)</option>
                 <option value="1 - 50 GB/day" selected>1 - 50 GB / day (Mid-Market SOC)</option>
                 <option value="50 - 500 GB/day">50 - 500 GB / day (Enterprise)</option>
@@ -127,23 +130,23 @@
 
           <div class="form-group">
             <label for="message">Investigation Scope / Questions *</label>
-            <textarea id="message" class="form-control" placeholder="Describe your team's SOC challenges, log sources, or partnership objectives..." required></textarea>
+            <textarea id="message" name="message" class="form-control" placeholder="Describe your team's SOC challenges, log sources, or partnership objectives..." required></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">
             Transmit Secure Inquiry →
           </button>
           <div style="font-size: 0.72rem; color: var(--text-dim); text-align: center; margin-top: 0.85rem;">
-            🔒 AES-256 Encrypted Inbound Transmission • Protected by Zero Latency Protocols
+            🔒 AES-256 Encrypted Transmission • Connected directly to sanjeevanv@karunya.edu.in
           </div>
         </form>
 
         <!-- Success Confirmation Panel -->
         <div class="success-panel" id="success-panel">
           <div class="success-badge">✓</div>
-          <h2 style="font-family: var(--font-heading); color: var(--cream-white); margin-bottom: 0.5rem;">Inquiry Dispatched Successfully</h2>
-          <p style="color: var(--cream-muted); font-size: 0.9rem;">
-            Your request has been logged into the Zero Latency queue. A solutions architect will reach out within 1 business day.
+          <h2 style="font-family: var(--font-heading); color: var(--text-primary); margin-bottom: 0.5rem;">Inquiry Dispatched Successfully</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Your request has been routed directly to <strong style="color: var(--text-primary);">sanjeevanv@karunya.edu.in</strong>. A confirmation copy and ticket ID have been created.
           </p>
 
           <div class="ticket-display">
@@ -151,9 +154,9 @@
             <button class="copy-btn" id="copy-ticket-btn">Copy ID</button>
           </div>
 
-          <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+          <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
             <a href="index.html" class="btn btn-secondary">← Back to Overview</a>
-            <a href="http://127.0.0.1:8000/dashboard" target="_blank" class="btn btn-primary">Launch Web Console</a>
+            <a id="email-client-btn" href="mailto:sanjeevanv@karunya.edu.in" class="btn btn-primary">Open in Email App</a>
           </div>
         </div>
 
