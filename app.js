@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initSpotlightEffect();
   initMetricCounters();
+  initDecryptedHeadings();
 });
 
 /* ==========================================================================
@@ -581,6 +582,207 @@ function initMetricCounters() {
   }, { threshold: 0.25 });
 
   counters.forEach(c => observer.observe(c));
+}
+
+/* ==========================================================================
+   9. REACTBITS DECRYPTED TEXT & HACKER SCRAMBLE FOR HEADINGS
+   ========================================================================== */
+function prepareDecryptedElement(el) {
+  if (!el || el.dataset.decryptedPrepared === 'true') return;
+  el.dataset.decryptedPrepared = 'true';
+
+  function processNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent;
+      if (!text.trim()) return node;
+
+      const frag = document.createDocumentFragment();
+      const tokens = text.split(/(\s+)/);
+
+      tokens.forEach(token => {
+        if (/^\s+$/.test(token)) {
+          frag.appendChild(document.createTextNode(token));
+        } else {
+          const wordSpan = document.createElement('span');
+          wordSpan.className = 'decrypt-word';
+          for (let i = 0; i < token.length; i++) {
+            const char = token[i];
+            const charSpan = document.createElement('span');
+            charSpan.className = 'decrypt-char resolved';
+            charSpan.textContent = char;
+            charSpan.dataset.target = char;
+            wordSpan.appendChild(charSpan);
+          }
+          frag.appendChild(wordSpan);
+        }
+      });
+      return frag;
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      if (node.classList && (node.classList.contains('decrypt-char') || node.classList.contains('decrypt-word'))) {
+        return node;
+      }
+      const children = Array.from(node.childNodes);
+      children.forEach(child => {
+        const replacement = processNode(child);
+        if (replacement && replacement !== child) {
+          node.replaceChild(replacement, child);
+        }
+      });
+      return node;
+    }
+    return node;
+  }
+
+  processNode(el);
+}
+
+function playDecryptedAnimation(el, options = {}) {
+  if (!el) return;
+  prepareDecryptedElement(el);
+
+  if (el.dataset.animating === 'true') return;
+  el.dataset.animating = 'true';
+
+  const chars = Array.from(el.querySelectorAll('.decrypt-char'));
+  if (!chars.length) {
+    el.dataset.animating = 'false';
+    return;
+  }
+
+  // Technical cybersecurity glyph pool from Reactbits
+  const glyphPool = options.characters || '01!@#$%&*<>[]{}~=+-_/\\ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const speed = options.speed || 30; // ms per tick
+  const maxIterations = options.maxIterations || 7; // cycles per character
+  const staggerDelay = options.staggerDelay || 16; // delay between each letter start
+
+  let completedCount = 0;
+  const totalChars = chars.length;
+
+  chars.forEach((charEl, index) => {
+    const targetChar = charEl.dataset.target || charEl.textContent;
+    if (!targetChar.trim()) {
+      completedCount++;
+      if (completedCount >= totalChars) el.dataset.animating = 'false';
+      return;
+    }
+
+    const startDelay = index * staggerDelay;
+    let iteration = 0;
+
+    setTimeout(() => {
+      charEl.classList.remove('resolved');
+      charEl.classList.add('scrambling');
+
+      const intervalId = setInterval(() => {
+        iteration++;
+
+        if (iteration < maxIterations) {
+          const randomGlyph = glyphPool[Math.floor(Math.random() * glyphPool.length)];
+          charEl.textContent = randomGlyph;
+        } else {
+          clearInterval(intervalId);
+          charEl.textContent = targetChar;
+          charEl.classList.remove('scrambling');
+          charEl.classList.add('resolved');
+          completedCount++;
+
+          if (completedCount >= totalChars) {
+            el.dataset.animating = 'false';
+          }
+        }
+      }, speed);
+    }, startDelay);
+  });
+}
+
+function initDecryptedHeadings() {
+  const headings = document.querySelectorAll('.hero-title, .section-title, .contact-info-col h1, .tech-decrypt');
+  if (!headings.length) return;
+
+  // Prepare all headings for buttery smooth transition
+  headings.forEach(h => {
+    prepareDecryptedElement(h);
+    h.classList.add('tech-decrypt');
+
+    // Interactive Hover: re-trigger decrypt wave on mouse hover
+    h.addEventListener('mouseenter', () => {
+      playDecryptedAnimation(h, {
+        speed: 22,
+        maxIterations: 6,
+        staggerDelay: 12
+      });
+    });
+  });
+
+  // Hero title triggers on page entrance after a silky 200ms delay
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) {
+    setTimeout(() => {
+      playDecryptedAnimation(heroTitle, {
+        speed: 28,
+        maxIterations: 8,
+        staggerDelay: 15
+      });
+    }, 200);
+  }
+
+  // Section titles trigger as you scroll down
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        if (el !== heroTitle) {
+          playDecryptedAnimation(el, {
+            speed: 30,
+            maxIterations: 7,
+            staggerDelay: 16
+          });
+        }
+        obs.unobserve(el);
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  headings.forEach(h => {
+    if (h !== heroTitle) {
+      observer.observe(h);
+    }
+  });
+
+  // Micro-decrypt for card titles on hover over the card
+  const toolCards = document.querySelectorAll('.tool-card');
+  toolCards.forEach(card => {
+    const cardTitle = card.querySelector('.card-title');
+    if (cardTitle) {
+      prepareDecryptedElement(cardTitle);
+      card.addEventListener('mouseenter', () => {
+        playDecryptedAnimation(cardTitle, {
+          speed: 20,
+          maxIterations: 5,
+          staggerDelay: 10
+        });
+      });
+    }
+  });
+
+  // Micro-decrypt for trust card titles on hover (contact.html)
+  const trustCards = document.querySelectorAll('.trust-card');
+  trustCards.forEach(card => {
+    const cardTitle = card.querySelector('h4');
+    if (cardTitle) {
+      prepareDecryptedElement(cardTitle);
+      card.addEventListener('mouseenter', () => {
+        playDecryptedAnimation(cardTitle, {
+          speed: 20,
+          maxIterations: 5,
+          staggerDelay: 10
+        });
+      });
+    }
+  });
 }
 
 /* ==========================================================================
